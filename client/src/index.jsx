@@ -14,7 +14,7 @@ class App extends React.Component {
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
     $.get('http://localhost:1128/repos', (repos)=>{
       this.setState({
         repos: repos
@@ -33,7 +33,7 @@ class App extends React.Component {
       type: "POST",
       url: 'http://localhost:1128/repos',
       data: {username : `${term}`},
-      success: ()=> {this.componentWillMount}
+      success: ()=> {this.componentDidMount()}
     });
   }
 
