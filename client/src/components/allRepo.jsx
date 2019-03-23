@@ -10,6 +10,7 @@ class AllRepo extends React.Component {
   render() {
    return (<div>
    <a href={this.props.repos.url.replace('api', "www").replace("repos", "")}>{this.props.repos.repoName}</a> 
+   <div>{this.props.repos.username}</div>
    </div>) 
  }
 }
