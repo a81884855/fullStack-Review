@@ -16,8 +16,10 @@ class App extends React.Component {
 
   componentDidMount(){
     $.get('http://localhost:1128/repos', (repos)=>{
+      let limit = this.state.repos.concat(repos)
+      limit.length > 25 ? repos = limit.slice(limit.length-25) : null
       this.setState({
-        repos: repos
+        repos: repos.reverse()
       });
       console.log(repos)
     });
@@ -45,11 +47,12 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
+      <Search onSearch={this.search.bind(this)}/>
       <RepoList repos={this.state.repos}/>
       {this.state.repos.map((repo)=>
       <div><AllRepo repos={repo}/></div>
      )}
-      <Search onSearch={this.search.bind(this)}/>
+      
     </div>)
   }
 }
