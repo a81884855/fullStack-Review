@@ -10,7 +10,7 @@ class App extends React.Component {
     super(props);
     this.state = { 
       repos: [],
-      search: null
+      search: null,
     }
   }
 
@@ -24,8 +24,13 @@ class App extends React.Component {
   }
 
   search (term) {
+    let duplicated = false
     console.log(`${term} was searched`);
-    // TODO
+    for(var i of this.state.repos){
+      i.username === term ? duplicated = true: null
+    }
+
+  if(!duplicated){
     this.setState({
       search: term
     })
@@ -34,9 +39,9 @@ class App extends React.Component {
       url: 'http://localhost:1128/repos',
       data: {username : `${term}`},
       success: ()=> {this.componentDidMount()}
-    });
+      });
+    }
   }
-
   render () {
     return (<div>
       <h1>Github Fetcher</h1>

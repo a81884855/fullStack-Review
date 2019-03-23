@@ -1,24 +1,20 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher');
+var uniqueValidator = require('mongoose-unique-validator');
 
 let repoSchema = new mongoose.Schema({
   // TODO: your schema here!
   id: Number,
   username: String,
   repoName: String,
-  url: {type: String, unique: true}
+  url: String
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
 
 let save = (githubObj) => {
-  // TODO: Your code here
-  // This function should save a repo or repos to
-  // the MongoDB
-  //githubObj need bodyParser
   repoObj = {};
   for(var i =0; i < githubObj.length; i++){
-    console.log(githubObj[i].owner.login)
     repoObj.id = githubObj[i].id;
     repoObj.username = githubObj[i].owner.login;
     repoObj.repoName = githubObj[i].name;
