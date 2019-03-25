@@ -21,7 +21,6 @@ class App extends React.Component {
       this.setState({
         repos: repos.reverse()
       });
-      console.log(repos)
     });
   }
 

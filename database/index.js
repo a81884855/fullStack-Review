@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher');
-var uniqueValidator = require('mongoose-unique-validator');
 
 let repoSchema = new mongoose.Schema({
   // TODO: your schema here!
@@ -22,18 +21,21 @@ let save = (githubObj) => {
     
     var repo = new Repo(repoObj);
     
-    repo.save((err) => {console.log(err)})
+    repo.save((err) => {
+      if(err) console.log(err);
+    })
   }
   
 }
 
 let get = function (callback){
   Repo.find((err, data)=>{
-    if(err){
-      console.log(err);
-    } else {
-      callback(data);
-    }
+    callback(err, data)
+    // if(err){
+    //   console.log(err);
+    // } else {
+    //   callback(data);
+    // }
   });
 }
 

@@ -18,7 +18,7 @@ let getReposByUsername = (username, callback) => {
   // console.log('searching', options.url);
   request.get(options, (err, res) => {
     if(err){
-      console.log(err);
+      console.log("2", err);
     }else{
       // console.log(JSON.parse(res.body));
       callback(JSON.parse(res.body));

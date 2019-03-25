@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 app.post('/repos', function (req, res) {
-  console.log(req.body.username);
+  // console.log(req.body.username);
   
   helpers.getReposByUsername(req.body.username, (result)=>{
     db.save(result, (err, success)=>{
@@ -27,7 +27,8 @@ app.post('/repos', function (req, res) {
 
 
 app.get('/repos', function (req, res) {
-  db.get((data) => {
+  db.get((err, data) => {
+    if(err) console.log("1", err)
     res.status(200).json(data);
   })
   // TODO - your code here!
